@@ -1,6 +1,6 @@
 {
   "name": "swap.pet-lib",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Solidity libraries that are shared across swap.pet contracts",
   "main": "index.js",
   "scripts": {
