@@ -3,7 +3,8 @@ Solidity libraries that are shared across swap.pet contracts
 
 
 # push npm
-
+update:`$ ./git.go.sh `
+install:`$ npm i git+https://github.com/swappet/swap.pet-lib.git`
 
 # usage
 
