@@ -1,0 +1,32 @@
+{
+  "name": "swap.pet-lib",
+  "version": "1.0.0",
+  "description": "Solidity libraries that are shared across swap.pet contracts",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/swappet/swap.pet-lib.git"
+  },
+  "keywords": [
+    "Swap.Pet",
+    "SwapPet",
+    "SPTC",
+    "SPTE",
+    "SPTF",
+    "SPT",
+    "pUSD",
+    "ERC20"
+  ],
+  "author": "swap.pet@pm.me",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/swappet/swap.pet-lib/issues"
+  },
+  "homepage": "https://github.com/swappet/swap.pet-lib#readme",
+  "dependencies": {
+    "@openzeppelin/contracts": "^3.2.0"
+  }
+}
