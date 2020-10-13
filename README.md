@@ -99,6 +99,34 @@ edit `.gitignore`:
 build/
 ```
 
+## Automated Smart Contract Tests
+edit sol file in dir of `contracts`
+
+add test file `test/SafeNamer.js`
+```
+```
+
+add test tool:
+```
+$ npm i --save-dev @openzeppelin/test-helpers @openzeppelin/test-environment mocha chai 
+$ npm i @truffle/debug-utils 
+```
+
+edit 'package.json':
+```
+"scripts": {
+  "test": "oz compile && mocha --exit --recursive"
+}
+```
+
+run oz test:
+```
+$ npm test
+or
+$ npm run test
+<!-- cause Mocha to stop immediately on the first failing test -->
+$ npm test -- --bail
+```
 
 # package with npm
 update:`$ ./git.go.sh `
