@@ -5,38 +5,38 @@ pragma solidity ^0.7.0;
 
 import '../SafeMath.sol';
 
-/// @dev contract using SafeMath library
+/// @dev contract using SafeMath library 
 contract SafeMathMock {
     using SafeMath for uint256;
     using SafeMath for uint;
     function max(uint a_, uint b_) public pure returns (uint) {
-        return a_.max(b_);
+        return SafeMath.max(a_,b_);
     } 
     function min(uint a_, uint b_) public pure returns (uint) {
-        return a_.min(b_);
+        return SafeMath.min(a_,b_);
     } 
     function twins(uint a_, uint b_) public pure returns (uint[2] memory) {
-        return a_.twins(b_);
+        return SafeMath.twins(a_,b_);
     }
     function avg(uint a_, uint b_) public pure returns (uint) {
-        return a_.avg(b_);
+        return SafeMath.avg(a_,b_);
     }
     function add(uint a_, uint b_) public pure returns (uint) { 
-        return a_.add(b_);
+        return SafeMath.add(a_,b_);
     }
     function sub(uint a_, uint b_) public pure returns (uint) {
-        return a_.sub(b_);
+        return SafeMath.sub(a_,b_);
     }
     function mul(uint a_, uint b_) public pure returns (uint) {
-        return a_.mul(b_);
+        return SafeMath.mul(a_,b_);
     }
     function div(uint a_, uint b_) public pure returns (uint) {
-        return a_.div(b_);
+        return SafeMath.div(a_,b_);
     }  
     function mod(uint a_, uint b_) public pure returns (uint) {
-        return a_.mod(b_);
+        return SafeMath.mod(a_,b_);
     } 
     function sqrt(uint a_) public pure returns (uint) {
-        return a_.sqrt();
+        return SafeMath.sqrt(a_);
     }
 }  

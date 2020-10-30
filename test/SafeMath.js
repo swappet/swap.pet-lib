@@ -11,95 +11,105 @@ const {  BN,  expectRevert } = require('@openzeppelin/test-helpers');
 const SafeMathMock = contract.fromArtifact("SafeMathMock"); 
  
 const MaxUint256 = (new BN(2)).pow(new BN(256)).sub(new BN(1))
-const a = new BN('18');
-const b = new BN('58'); 
-const a2 = new BN('324');   // a^2
-const a25 = new BN('329'); // a^2+5
+const minA = new BN('18');
+const maxB = new BN('58'); 
+const minA2 = new BN('324');   // minA^2
+const minA25 = new BN('329'); // minA^2+5
  
 describe("SafeMath test", function () {     
     beforeEach(async function() {
         safeMathMock = await SafeMathMock.new();
     });
-    it('max(a,b)', async function () {
-        assert.equal(b.toString(), await safeMathMock.max(a,b));
+    it('max(minA,maxB)', async function () {
+        assert.equal(maxB.toString(), await safeMathMock.max(minA,maxB));
     });
-    it('max(b,a)', async function () {
-        assert.equal(b.toString(), await safeMathMock.max(b,a));
+    it('max(maxB,minA)', async function () {
+        assert.equal(maxB.toString(), await safeMathMock.max(maxB,minA));
     });
-    it('min(a,b)', async function () {
-        assert.equal(a.toString(), await safeMathMock.min(a,b));
+    it('min(minA,maxB)', async function () {
+        assert.equal(minA.toString(), await safeMathMock.min(minA,maxB));
     });
-    it('min(b,a)', async function () {
-        assert.equal(a.toString(), await safeMathMock.min(b,a));
+    it('min(maxB,minA)', async function () {
+        assert.equal(minA.toString(), await safeMathMock.min(maxB,minA));
     });
-    it('twins(a,b)', async function () {
-        twins = await safeMathMock.twins(a,b)
-        assert.equal(a.toString(),twins[0] );
-        assert.equal(b.toString(),twins[1] );
+    it('twins(minA,maxB)', async function () {
+        twins = await safeMathMock.twins(minA,maxB)
+        assert.equal(minA.toString(),twins[0] );
+        assert.equal(maxB.toString(),twins[1] );
     });
-    it('twins(b,a)', async function () {
-        twins = await safeMathMock.twins(b,a)
-        assert.equal(a.toString(),twins[0] );
-        assert.equal(b.toString(),twins[1] );
+    it('twins(maxB,minA)', async function () {
+        twins = await safeMathMock.twins(maxB,minA)
+        assert.equal(minA.toString(),twins[0] );
+        assert.equal(maxB.toString(),twins[1] );
     });
-    it('avg(a,MaxUint256)', async function () {
-        assert.equal((MaxUint256.add(a).div(new BN(2))).toString(), await safeMathMock.avg(a,MaxUint256));
+    it('avg(minA,MaxUint256) with two even numbers', async function () {
+        assert.equal((MaxUint256.add(minA).div(new BN(2))).toString(), await safeMathMock.avg(minA,MaxUint256));
     });
-    it('add(a,b)', async function () {
-        assert.equal(a.add(b).toString(), await safeMathMock.add(a,b));
+    it('avg(12345,67890) with one even and one odd number', async function () {
+        let oddA = new BN('12345');
+        let evenB = new BN('67890');
+        assert.equal((oddA.add(evenB).divn(new BN(2))).toString(), await safeMathMock.avg(evenB,oddA));
     });
-    it('add(a,MaxUint256) overflow', async function () { 
-        await expectRevert(safeMathMock.add(a,MaxUint256),
+    it('avg(12345,56789) with two odd numbers', async function () {
+        let oddA = new BN('12345');
+        let oddB = new BN('56789');
+        assert.equal((oddA.add(oddB).divn(new BN(2))).toString(), await safeMathMock.avg(oddB,oddA));
+    });
+    it('add(minA,maxB)', async function () {
+        assert.equal(minA.add(maxB).toString(), await safeMathMock.add(minA,maxB));
+    });
+    it('add(minA,MaxUint256) overflow', async function () { 
+        await expectRevert(safeMathMock.add(minA,MaxUint256),
           'SafeMath: add overflow',
         );
     });
-    it('sub(MaxUint256,a)', async function () {
-        assert.equal(MaxUint256.sub(a).toString(), await safeMathMock.sub(MaxUint256,a));
+    it('sub(MaxUint256,minA)', async function () {
+        assert.equal(MaxUint256.sub(minA).toString(), await safeMathMock.sub(MaxUint256,minA));
     });
-    it('sub(a,MaxUint256) overflow', async function () { 
-        await expectRevert(safeMathMock.sub(a,MaxUint256),
+    it('sub(minA,MaxUint256) overflow', async function () { 
+        await expectRevert(safeMathMock.sub(minA,MaxUint256),
           'SafeMath: sub overflow',
         );
     });
-    it('mul(a,b)', async function () {
-        assert.equal(a.mul(b).toString(), await safeMathMock.mul(a,b));
+    it('mul(minA,maxB)', async function () {
+        assert.equal(minA.mul(maxB).toString(), await safeMathMock.mul(minA,maxB));
     });
-    it('mul(0,b)', async function () {
-        assert.equal('0', await safeMathMock.mul(0,b));
+    it('mul(0,maxB)', async function () {
+        assert.equal('0', await safeMathMock.mul(0,maxB));
     });
-    it('mul(a,0)', async function () {
-        assert.equal('0', await safeMathMock.mul(a,0));
+    it('mul(minA,0)', async function () {
+        assert.equal('0', await safeMathMock.mul(minA,0));
     });
-    it('mul(a,MaxUint256) overflow', async function () { 
-        await expectRevert(safeMathMock.mul(a,MaxUint256),
+    it('mul(minA,MaxUint256) overflow', async function () { 
+        await expectRevert(safeMathMock.mul(minA,MaxUint256),
           'SafeMath: mul overflow',
         );
     });
-    it('div(a,b)', async function () {
-        assert.equal(a.div(b).toString(), await safeMathMock.div(a,b));
+    it('div(minA,maxB)', async function () {
+        assert.equal(minA.div(maxB).toString(), await safeMathMock.div(minA,maxB));
     });
-    it('div(b,a)', async function () {
-        assert.equal(b.div(a).toString(), await safeMathMock.div(b,a));
+    it('div(maxB,minA)', async function () {
+        assert.equal(maxB.div(minA).toString(), await safeMathMock.div(maxB,minA));
     });
-    it('div(0,b)', async function () {
-        assert.equal('0', await safeMathMock.div(0,b));
+    it('div(0,maxB)', async function () {
+        assert.equal('0', await safeMathMock.div(0,maxB));
     });
-    it('div(a,0)', async function () {
-        await expectRevert(safeMathMock.div(a,0),
+    it('div(minA,0)', async function () {
+        await expectRevert(safeMathMock.div(minA,0),
           'SafeMath: div by zero',
         );
     });
-    it('mod(a,b)', async function () {
-        assert.equal(a.mod(b).toString(), await safeMathMock.mod(a,b));
+    it('mod(minA,maxB)', async function () {
+        assert.equal(minA.mod(maxB).toString(), await safeMathMock.mod(minA,maxB));
     });
-    it('mod(b,a)', async function () {
-        assert.equal(b.mod(a).toString(), await safeMathMock.mod(b,a));
+    it('mod(maxB,minA)', async function () {
+        assert.equal(maxB.mod(minA).toString(), await safeMathMock.mod(maxB,minA));
     });
-    it('mod(0,b)', async function () {
-        assert.equal('0', await safeMathMock.mod(0,b));
+    it('mod(0,maxB)', async function () {
+        assert.equal('0', await safeMathMock.mod(0,maxB));
     });
-    it('mod(a,0)', async function () {
-        await expectRevert(safeMathMock.mod(a,0),
+    it('mod(minA,0)', async function () {
+        await expectRevert(safeMathMock.mod(minA,0),
           'SafeMath: mod by zero',
         );
     });
@@ -118,10 +128,10 @@ describe("SafeMath test", function () {
     it('sqrt(4)', async function () {
         assert.equal('2', await safeMathMock.sqrt(4));
     });
-    it('sqrt(a2)', async function () {
-        assert.equal(a.toString(), await safeMathMock.sqrt(a2));
+    it('sqrt(minA2)', async function () {
+        assert.equal(minA.toString(), await safeMathMock.sqrt(minA2));
     });
-    it('sqrt(a25)', async function () {
-        assert.equal(a.toString(), await safeMathMock.sqrt(a25));
+    it('sqrt(minA25)', async function () {
+        assert.equal(minA.toString(), await safeMathMock.sqrt(minA25));
     });
 });
