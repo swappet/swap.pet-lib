@@ -15,10 +15,10 @@ interface ITokenNamer {
 // this library will always produce a string symbol to represent the token
 library SafeNamer {
     
-    string private constant _PREFIX = '🐔';
+    string private constant _PREFIX = "🐔";
     string private constant _SPLITER = ':';
     string private constant _SEPARATOR = '-';
-    string private constant _SUFFIX = '🥚';
+    string private constant _SUFFIX = "🥚";
 
     // produces a pair name descriptor in the format of `${prefix}${name0}-${name1}${suffix}`
     function pairName(string memory prefix,address token0, address token1,  string memory suffix) internal view returns (string memory) {
