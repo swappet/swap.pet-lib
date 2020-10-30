@@ -1,7 +1,7 @@
+// SPDX-License-Identifier: Apache-2.0
+// Copyright 2020 Swap.Pet@pm.me
 // contracts/SafeNamer.sol
-// Copyright (C) 2020, 2021, 2022 Swap.Pet@pm.me
-// SPDX-License-Identifier: MIT
-pragma solidity ^0.6.0;
+pragma solidity ^0.7.0;
 
 /**
  * @dev Interface of the token with name()/symbol().

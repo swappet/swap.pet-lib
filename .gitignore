@@ -110,4 +110,12 @@ dist
 build/
 
 # truffle 
-.secret
+.secret  
+.mnemonic
+.infuraKey
+.etherscan   
+
+#Hardhat files
+cache
+artifacts
+build

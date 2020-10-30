@@ -1,8 +1,26 @@
 # swap.pet-lib
 Solidity libraries that are shared across swap.pet contracts
 
+# Summary
+
+# Design Goals
+Solidity libraries that are shared across Swap.Pet contracts. These libraries are focused on safety and gas efficiency.
 
 # usage
+
+# Install
+Run `yarn` or `npx npm i` to install dependencies.
+
+# Test
+Run `npx npm test` test to execute the test suite.
+
+# Usage
+Install this in another project:  
+`$ yarn add swap.pet-lib`  
+or:`$ npx npm i swap.pet-lib`  
+
+Then import the contracts via:  
+`import 'swap.pet-lib/contracts/lib/ERC20.sol';`
 
 # create
 ## install LTS Node with nvm
@@ -27,6 +45,40 @@ $ cd ~/lib
 $ npx npm init
 $ npx npm install
 ```
+
+ 
+# Installation Instructions  
+in app dir:`$ npx npm i swap.pet-lib`  
+  
+in sol file:  
+```
+import "swap.pet-lib/contracts/SafeMath.sol";
+import "swap.pet-lib/interfaces/ISwapPetOracle.sol";
+```
+
+# sol debug
+in sol file:  
+`import "hardhat/console.sol";`
+# create workflow  
+```  
+mkdir ~/defiApp  
+cd defiApp  
+npm init  
+npm install --save-dev hardhat  
+npm install --save-dev @nomiclabs/hardhat-truffle5 @nomiclabs/hardhat-web3 web3  
+```
+
+edit config:`$ vi hardhat.config.js`    
+  
+add gas-reporter:`$ npx npm install -D eth-gas-reporter`  
+get gas report:`$ npx truffle test`  
+add coverage:`$ npx npm install -D @nomiclabs/buidler solidity-coverage`  
+get coverage:`$ npx truffle run coverage`  
+run ganache :`$ npx ganache-cli --deterministic`  
+compile:`$ npx hardhat compile`  
+test:`$ npx hardhat test`  
+accounts:`$ npx hardhat accounts`  
+account balance:`$ npx hardhat balance --account 0xFABB0ac...`
 
 ## init project with truffle and ganache-cli
 ```
