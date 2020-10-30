@@ -38,8 +38,8 @@ main = async () => {
         .then(answers => {
             // let argv=["mocha","--exit","--recursive","--bail"];
             // let note="mocha --exit --recursive --bail ";
-            let argv=["truffle","run","coverage"];
-            let note="truffle run coverage "; 
+            let argv=["truffle","run","test"];
+            let note="truffle run test "; 
             if(answers.step1 !== 'all'){
                 console.log(note + testDir + answers.step1);
                 argv.push(testDir + answers.step1); 
