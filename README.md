@@ -60,60 +60,17 @@ import "swap.pet-lib/interfaces/ISwapPetOracle.sol";
 in sol file:  
 `import "hardhat/console.sol";`
 # create workflow  
-```  
-mkdir ~/defiApp  
-cd defiApp  
-npm init  
-npm install --save-dev hardhat  
-npm install --save-dev @nomiclabs/hardhat-truffle5 @nomiclabs/hardhat-web3 web3  
-```
-
-edit config:`$ vi hardhat.config.js`    
-  
-add gas-reporter:`$ npx npm install -D eth-gas-reporter`  
-get gas report:`$ npx truffle test`  
-add coverage:`$ npx npm install -D @nomiclabs/buidler solidity-coverage`  
-get coverage:`$ npx truffle run coverage`  
-run ganache :`$ npx ganache-cli --deterministic`  
-compile:`$ npx hardhat compile`  
-test:`$ npx hardhat test`  
-accounts:`$ npx hardhat accounts`  
-account balance:`$ npx hardhat balance --account 0xFABB0ac...`
-
-## init project with truffle and ganache-cli
-```
+``` 
 $ npm i -g truffle
-$ npm i -g ganache-cli
+$ npm i -g ganache-cli 
+$ mkdir ~/lib   
 $ cd ~/lib
+$ npm init  
 $ npx truffle init
 // open new terminal
 $ npx ganache-cli --deterministic
-```
-
-edit `truffle-config.js`:
-```
-module.exports = {
-  networks: {
-    development: {
-     host: "127.0.0.1",     // Localhost (default: none)
-     port: 8545,            // Standard Ethereum port (default: none)
-     network_id: "*",       // Any network (default: none)
-    },
-  }, 
-  compilers: {
-    solc: {
-      // version: "0.5.1",    // Fetch exact version from solc-bin (default: truffle's version)
-      // docker: true,        // Use "0.5.1" you've installed locally with docker (default: false)
-      settings: {          // See the solidity docs for advice about optimization and evmVersion
-       optimizer: {
-         enabled: true,
-         runs: 200
-       },
-       // evmVersion: "byzantium"  // default:istanbul
-      }
-    },
-  },
-};
+$ npm install --save-dev hardhat  
+$ npm install --save-dev @nomiclabs/hardhat-truffle5 @nomiclabs/hardhat-web3 web3  
 ```
 
 edit `.gitignore`:
@@ -128,6 +85,18 @@ $ cp .secret.sample .secret
 $ vi .secret
 ```
 
+edit config:`$ vi hardhat.config.js`    
+  
+add gas-reporter:`$ npx npm install -D eth-gas-reporter`  
+get gas report:`$ npx truffle test`  
+add coverage:`$ npx npm install -D @nomiclabs/buidler solidity-coverage`  
+get coverage:`$ npx truffle run coverage`  
+run ganache :`$ npx ganache-cli --deterministic`  
+compile:`$ npx hardhat compile`  
+test:`$ npx hardhat test`  
+accounts:`$ npx hardhat accounts`  
+account balance:`$ npx hardhat balance --account 0xFABB0ac...`
+ 
 ## init project with openzeppelin CLI
 ```
 <!-- $ npm install --save-dev @openzeppelin/cli -->
@@ -154,9 +123,7 @@ build/
 ## Automated Smart Contract Tests
 edit sol file in dir of `contracts`
 
-add test file `test/SafeNamer.js`
-```
-```
+add test file `test/SafeNamer.js` 
 
 add test tool:
 ```
