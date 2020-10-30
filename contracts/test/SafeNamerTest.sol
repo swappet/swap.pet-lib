@@ -28,6 +28,7 @@ contract MixNamerTest {
 contract FakeToken {
     string public name;
     string public symbol;
+    
     constructor(string memory name_, string memory symbol_) public {
         name = name_;
         symbol = symbol_;
