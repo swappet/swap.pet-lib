@@ -179,12 +179,4 @@ $ npm run test
 <!-- cause Mocha to stop immediately on the first failing test -->
 $ npm test -- --bail
 ```
-
-# package with npm
-update:`$ ./git.go.sh `
-npm login:`$npm login` (new user:`$ npm adduser `, need active in email)
-publish package:`$npm publish`
-package major:`npm version major -m '[major]'`
-package minor:`npm version minor -m '[minor]'`
-package patch:`npm version patch -m '[patch]'`
-install:`$ npm i git+https://github.com/swappet/swap.pet-lib.git`
+ 
