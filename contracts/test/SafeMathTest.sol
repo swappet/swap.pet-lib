@@ -1,7 +1,7 @@
 // contracts/test/SafeMathTest.sol
 // Copyright (C) 2020, 2021, 2022 Swap.Pet@pm.me
 // SPDX-License-Identifier: MIT
-pragma solidity ^0.6.0; 
+pragma solidity ^0.7.0; 
 
 import '../SafeMath.sol';
 
