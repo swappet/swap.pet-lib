@@ -1,12 +1,12 @@
-// contracts/test/SafeMathTest.sol
-// Copyright (C) 2020, 2021, 2022 Swap.Pet@pm.me
-// SPDX-License-Identifier: MIT
+// SPDX-License-Identifier: Apache-2.0
+// Copyright 2020 Swap.Pet@pm.me
+// contracts/mocks/SafeMathMock.sol 
 pragma solidity ^0.7.0; 
 
 import '../SafeMath.sol';
 
 /// @dev contract using SafeMath library
-contract SafeMathTest {
+contract SafeMathMock {
     using SafeMath for uint256;
     using SafeMath for uint;
     function max(uint a_, uint b_) public pure returns (uint) {

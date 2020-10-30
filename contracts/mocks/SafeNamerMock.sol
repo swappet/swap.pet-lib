@@ -1,11 +1,11 @@
-// contracts/test/SafeNamerTest.sol
-// Copyright (C) 2020, 2021, 2022 Swap.Pet@pm.me
-// SPDX-License-Identifier: MIT
+// SPDX-License-Identifier: Apache-2.0
+// Copyright 2020 Swap.Pet@pm.me
+// contracts/mocks/SafeNamerMock.sol 
 pragma solidity ^0.7.0; 
 
 import '../SafeNamer.sol';
 
-contract PairNamerTest {
+contract PairNamerMock {
     function pairName(string calldata prefix, address token0, address token1, string calldata suffix) external view returns (string memory) {
         return SafeNamer.pairName(prefix, token0, token1, suffix);
     }
@@ -15,7 +15,7 @@ contract PairNamerTest {
     }
 }
 
-contract MixNamerTest {
+contract MixNamerMock {
     function mixName(string calldata prefix, address[] memory tokens, address tokenBase, string calldata suffix) external view returns (string memory) {
         return SafeNamer.mixName(prefix,tokens, tokenBase,  suffix);
     }
@@ -25,7 +25,7 @@ contract MixNamerTest {
     }
 }
 /// @dev test token with name()/symbol()
-contract FakeToken {
+contract FakeTokenMock {
     string public name;
     string public symbol;
     

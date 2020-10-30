@@ -1,6 +1,6 @@
 // SPDX-License-Identifier: Apache-2.0
 // Copyright 2020 Swap.Pet@pm.me
-// contracts/interfaces/ISwapPetOracle.sol
+// interfaces/ISwapPetOracle.sol
 pragma solidity ^0.7.0;
 
 /// @title   Interface for interacting with price Oracle of Swap.Pet.

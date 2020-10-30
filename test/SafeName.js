@@ -1,6 +1,6 @@
-// contracts/test/SafeNamerTest.sol
-// Copyright (C) 2020, 2021, 2022 Swap.Pet@pm.me
-// SPDX-License-Identifier: MIT
+// SPDX-License-Identifier: Apache-2.0
+// Copyright 2020 Swap.Pet@pm.me
+// test/SafeNamer.js
 const assert = require('assert');
 const { contract, accounts,web3 } = require('@openzeppelin/test-environment');
 
@@ -35,9 +35,9 @@ const {
 
 // Loads the built artifact from build/contracts/SPTC.json
 // const ERC20 = artifacts.require('ERC20'); // truffle style
-const FakeToken = contract.fromArtifact("FakeToken"); 
-const PairNamerTest = contract.fromArtifact("PairNamerTest"); 
-const MixNamerTest = contract.fromArtifact("MixNamerTest"); 
+const FakeTokenMock = contract.fromArtifact("FakeTokenMock"); 
+const PairNamerMock = contract.fromArtifact("PairNamerMock"); 
+const MixNamerMock = contract.fromArtifact("MixNamerMock"); 
 
 // get account from accounts array
 [owner, sender, receiver, purchaser, beneficiary] = accounts;
@@ -57,18 +57,18 @@ describe("test balance", function () {
 // contract('ERC20', function (accounts) { //  truffle style
 describe("SafeNamer test", function () {     
     beforeEach(async function() {
-        pairNamer = await PairNamerTest.new({ from: owner });
-        mixNamer = await MixNamerTest.new({ from: owner });
+        pairNamer = await PairNamerMock.new({ from: owner });
+        mixNamer = await MixNamerMock.new({ from: owner });
         tBaseNamer = [
             "SwapPetTokenBase",   // name
             "SPTB"              // symbol
         ];
-        tokenBase = await FakeToken.new(...tBaseNamer, { from: owner });
-        token1 = await FakeToken.new('tokenName1','TS1', { from: owner });
-        token2 = await FakeToken.new('tokenName2','TS2', { from: owner });
-        token3 = await FakeToken.new('tokenName3','TS3', { from: owner });
-        token4 = await FakeToken.new('tokenName4','TS4', { from: owner });
-        token5 = await FakeToken.new('tokenName5','TS5', { from: owner });
+        tokenBase = await FakeTokenMock.new(...tBaseNamer, { from: owner });
+        token1 = await FakeTokenMock.new('tokenName1','TS1', { from: owner });
+        token2 = await FakeTokenMock.new('tokenName2','TS2', { from: owner });
+        token3 = await FakeTokenMock.new('tokenName3','TS3', { from: owner });
+        token4 = await FakeTokenMock.new('tokenName4','TS4', { from: owner });
+        token5 = await FakeTokenMock.new('tokenName5','TS5', { from: owner });
     });
     it('name()', async function () {
         assert.equal(tBaseNamer[0], await tokenBase.name());
