@@ -9,6 +9,7 @@ const { expect } = require('chai');
 const {  BN,  expectRevert } = require('@openzeppelin/test-helpers'); 
 
 const SafeMathMock = contract.fromArtifact("SafeMathMock"); 
+const SafeCastMock = contract.fromArtifact("SafeCastMock"); 
  
 const MaxUint256 = (new BN(2)).pow(new BN(256)).sub(new BN(1))
 const minA = new BN('18');
@@ -133,5 +134,18 @@ describe("SafeMath test", function () {
     });
     it('sqrt(minA25)', async function () {
         assert.equal(minA.toString(), await safeMathMock.sqrt(minA25));
+    }); 
+});
+describe("SafeCast test", function () {     
+    beforeEach(async function() {
+        safeCastMock = await SafeCastMock.new();
+    });   
+    it('toInt256(2**255-1)', async function () {
+        assert.equal(MaxUint256.toString(), await safeCastMock.toInt256(MaxUint256));
     });
+    it('toInt256(2**255) overflow', async function () { 
+        await expectRevert(safeCastMock.toInt256(2**255),
+          'SafeCast: value overflow int256',
+        );
+    }); 
 });
