@@ -160,12 +160,12 @@ describe("SafeCast test", function () {
           'SafeCast: value overflow 128 bits',
         );
     }); 
-    it('toInt128(-2**127+1)', async function () {
-        let maxUint127 = (new BN(2)).pow(new BN(127)).mul(new BN(-1)).add(new BN(1));
+    it('toInt128(-2**127)', async function () {
+        let maxUint127 = (new BN(2)).pow(new BN(127)).mul(new BN(-1));
         assert.equal(maxUint127.toString(), await safeCastMock.toInt128(maxUint127));
     });
-    it('toInt128(-2**127) overflow', async function () { 
-        let overUint127 = (new BN(2)).pow(new BN(127)).mul(new BN(-1));
+    it('toInt128(-2**127-1) overflow', async function () { 
+        let overUint127 = (new BN(2)).pow(new BN(127)).mul(new BN(-1)).sub(new BN(1));
         await expectRevert(safeCastMock.toInt128(overUint127),
           'SafeCast: value overflow 128 bits',
         );
