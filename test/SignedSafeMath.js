@@ -45,12 +45,7 @@ describe("SignedSafeMath test", function () {
     });
     it('avg(minA,-maxB) with two even numbers', async function () {
         assert.equal((minA.add(maxB).div(new BN(2))).toString(), await signedSafeMathMock.avg(minA,maxB));
-    });
-    it('avg(12345,-67890) with one even and one odd number', async function () {
-        let oddA = new BN('12345');
-        let evenB = new BN('-67890');
-        assert.equal((oddA.add(evenB).divn(new BN(2))).toString(), await signedSafeMathMock.avg(evenB,oddA));
-    });
+    }); 
     it('avg(12345,-56789) with two odd numbers', async function () {
         let oddA = new BN('12345');
         let oddB = new BN('-56789');
