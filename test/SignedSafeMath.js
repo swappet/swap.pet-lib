@@ -43,13 +43,13 @@ describe("SignedSafeMath test", function () {
         assert.equal(maxB.toString(),twins[0] );
         assert.equal(minA.toString(),twins[1] );
     });
-    it('avg(minA,MaxUint256) with two even numbers', async function () {
-        assert.equal((MaxUint256.add(minA).div(new BN(2))).toString(), await signedSafeMathMock.avg(minA,MaxUint256));
+    it('avg(minA,-maxB) with two even numbers', async function () {
+        assert.equal((minA.add(maxB).div(new BN(2))).toString(), await signedSafeMathMock.avg(minA,maxB));
     });
     it('avg(12345,-67890) with one even and one odd number', async function () {
         let oddA = new BN('12345');
         let evenB = new BN('-67890');
-        assert.equal((oddA.add(evenB).divn(new BN(2))).toString(), await signedSafeMathMock.avg(evenB,oddA));
+        assert.equal((oddA.add(evenB).divn(new BN(2)).divn(new BN(10))).toString(), await signedSafeMathMock.avg(evenB,oddA).div(new BN(2)));
     });
     it('avg(12345,-56789) with two odd numbers', async function () {
         let oddA = new BN('12345');
@@ -64,40 +64,25 @@ describe("SignedSafeMath test", function () {
           'SignedSafeMath: add overflow',
         );
     });
-    it('sub(MaxUint256,minA)', async function () {
-        assert.equal(MaxUint256.sub(minA).toString(), await signedSafeMathMock.sub(MaxUint256,minA));
+    it('sub(-maxB,minA)', async function () {
+        assert.equal(maxB.sub(minA).toString(), await signedSafeMathMock.sub(maxB,minA));
     }); 
-    it('sub(MaxUint256,-maxB) overflow', async function () { 
-        await expectRevert(signedSafeMathMock.sub(MaxUint256,maxB),
-          'SignedSafeMath: sub overflow',
-        );
-    });
-    it('mul(minA,maxB)', async function () {
+    it('mul(minA,-maxB)', async function () {
         assert.equal(minA.mul(maxB).toString(), await signedSafeMathMock.mul(minA,maxB));
     });
-    it('mul(0,maxB)', async function () {
+    it('mul(0,-maxB)', async function () {
         assert.equal('0', await signedSafeMathMock.mul(0,maxB));
     });
     it('mul(minA,0)', async function () {
         assert.equal('0', await signedSafeMathMock.mul(minA,0));
-    });
-    it('mul(minA,MaxUint256) overflow', async function () { 
-        await expectRevert(signedSafeMathMock.mul(minA,MaxUint256),
-          'SignedSafeMath: mul overflow',
-        );
-    });
-    it('mul(-maxB,MaxUint256) overflow', async function () { 
-        await expectRevert(signedSafeMathMock.mul(maxB,MaxUint256),
-          'SignedSafeMath: mul overflow',
-        );
-    });
-    it('div(minA,maxB)', async function () {
+    }); 
+    it('div(minA,-maxB)', async function () {
         assert.equal(minA.div(maxB).toString(), await signedSafeMathMock.div(minA,maxB));
     });
-    it('div(maxB,minA)', async function () {
+    it('div(-maxB,minA)', async function () {
         assert.equal(maxB.div(minA).toString(), await signedSafeMathMock.div(maxB,minA));
     });
-    it('div(0,maxB)', async function () {
+    it('div(0,-maxB)', async function () {
         assert.equal('0', await signedSafeMathMock.div(0,maxB));
     });
     it('div(minA,0)', async function () {

@@ -11,40 +11,10 @@ pragma solidity ^0.7.0;
 ///         use SafeCast for uint256; 
 library SafeCast {
 
-    /// @notice uint256 => uint128 
-    function toUint128(uint256 value) internal pure returns (uint128) {
-        require(value < 2**128, "SafeCast: value overflow 128 bits");
-        return uint128(value);
-    }
-
-    /// @notice uint256 => uint64 
-    function toUint64(uint256 value) internal pure returns (uint64) {
-        require(value < 2**64, "SafeCast: value overflow 64 bits");
-        return uint64(value);
-    }
-
-    /// @notice uint256 => uint32 
-    function toUint32(uint256 value) internal pure returns (uint32) {
-        require(value < 2**32, "SafeCast: value overflow 32 bits");
-        return uint32(value);
-    }
-
-    /// @notice uint256 => uint16
-    function toUint16(uint256 value) internal pure returns (uint16) {
-        require(value < 2**16, "SafeCast: value overflow 16 bits");
-        return uint16(value);
-    }
-
-    /// @notice uint256 => uint8 
-    function toUint8(uint256 value) internal pure returns (uint8) {
-        require(value < 2**8, "SafeCast: value overflow 8 bits");
-        return uint8(value);
-    }
-
-    /// @notice int256 => uint256 
-    function toUint256(int256 value) internal pure returns (uint256) {
-        require(value >= 0, "SafeCast: value must be positive");
-        return uint256(value);
+    /// @notice uint256 => toInt256 
+    function toInt256(uint256 value) internal pure returns (int256) {
+        require(value < 2**255, "SafeCast: value overflow int256");
+        return int256(value);
     }
 
     /// @notice int256 => uint128 
@@ -76,10 +46,41 @@ library SafeCast {
         require(value >= -2**7 && value < 2**7, "SafeCast: value overflow 8 bits");
         return int8(value);
     }
-
-    /// @notice uint256 => toInt256 
-    function toInt256(uint256 value) internal pure returns (int256) {
-        require(value < 2**255, "SafeCast: value overflow int256");
-        return int256(value);
+    
+    /// @notice int256 => uint256 
+    function toUint256(int256 value) internal pure returns (uint256) {
+        require(value >= 0, "SafeCast: value must be positive");
+        return uint256(value);
     }
+    /// @notice uint256 => uint128 
+    function toUint128(uint256 value) internal pure returns (uint128) {
+        require(value < 2**128, "SafeCast: value overflow 128 bits");
+        return uint128(value);
+    }
+
+    /// @notice uint256 => uint64 
+    function toUint64(uint256 value) internal pure returns (uint64) {
+        require(value < 2**64, "SafeCast: value overflow 64 bits");
+        return uint64(value);
+    }
+
+    /// @notice uint256 => uint32 
+    function toUint32(uint256 value) internal pure returns (uint32) {
+        require(value < 2**32, "SafeCast: value overflow 32 bits");
+        return uint32(value);
+    }
+
+    /// @notice uint256 => uint16
+    function toUint16(uint256 value) internal pure returns (uint16) {
+        require(value < 2**16, "SafeCast: value overflow 16 bits");
+        return uint16(value);
+    }
+
+    /// @notice uint256 => uint8 
+    function toUint8(uint256 value) internal pure returns (uint8) {
+        require(value < 2**8, "SafeCast: value overflow 8 bits");
+        return uint8(value);
+    }
+
+
 }
