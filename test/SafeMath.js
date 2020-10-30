@@ -139,13 +139,45 @@ describe("SafeMath test", function () {
 describe("SafeCast test", function () {     
     beforeEach(async function() {
         safeCastMock = await SafeCastMock.new();
-    });   
+    }); 
     it('toInt256(2**255-1)', async function () {
-        assert.equal(MaxUint256.toString(), await safeCastMock.toInt256(MaxUint256));
+        let maxUint255 = (new BN(2)).pow(new BN(255)).sub(new BN(1));
+        assert.equal(maxUint255.toString(), await safeCastMock.toInt256(maxUint255));
     });
     it('toInt256(2**255) overflow', async function () { 
-        await expectRevert(safeCastMock.toInt256(2**255),
+        let overUint255 = (new BN(2)).pow(new BN(255));
+        await expectRevert(safeCastMock.toInt256(overUint255),
           'SafeCast: value overflow int256',
         );
+    });   
+    it('toInt128(2**127-1)', async function () {
+        let maxUint127 = (new BN(2)).pow(new BN(127)).sub(new BN(1));
+        assert.equal(maxUint127.toString(), await safeCastMock.toInt128(maxUint127));
+    });
+    it('toInt128(2**127) overflow', async function () { 
+        let overUint127 = (new BN(2)).pow(new BN(127));
+        await expectRevert(safeCastMock.toInt128(overUint127),
+          'SafeCast: value overflow 128 bits',
+        );
     }); 
+    it('toInt128(-2**127+1)', async function () {
+        let maxUint127 = (new BN(2)).pow(new BN(127)).mul(-1).add(new BN(1));
+        assert.equal(maxUint127.toString(), await safeCastMock.toInt128(maxUint127));
+    });
+    it('toInt128(-2**127) overflow', async function () { 
+        let overUint127 = (new BN(2)).pow(new BN(127)).mul(-1);
+        await expectRevert(safeCastMock.toInt128(overUint127),
+          'SafeCast: value overflow 128 bits',
+        );
+    }); 
+    it('toUint256(2**255-1)', async function () {
+        let maxUint255 = (new BN(2)).pow(new BN(255)).sub(new BN(1));
+        assert.equal(maxUint255.toString(), await safeCastMock.toUint256(maxUint255));
+    });
+    it('toUint256(-1) overflow', async function () { 
+        let overUint255 = new BN(-1);
+        await expectRevert(safeCastMock.toUint256(overUint255),
+          'SafeCast: value must be positive',
+        );
+    });   
 });
