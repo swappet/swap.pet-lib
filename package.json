@@ -7,12 +7,17 @@
     "test": "test"
   },
   "scripts": {
-    "build": "npx npm run compile",
-    "tcompile": "npx truffle compile",
-    "compile": "npx hardhat compile",
+    "compile": "npx truffle compile",
+    "hcompile": "npx hardhat compile",
+    "ganache": "ganache-cli -e 10000",
+    "migrate": "node script/migrate.js",
+    "network": "node script/network.js",
+    "mocha": "mocha --exit --recursive",
+    "build": "npx npm run compile", 
     "coverage": "npx truffle run coverage",
+    "test": "node script/test.js",
     "gas": "npx truffle test",
-    "test": "npx hardhat test",
+    "htest": "npx hardhat test",
     "clean": "npx hardhat clean"
   },
   "repository": {

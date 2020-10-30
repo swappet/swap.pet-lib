@@ -1,3 +1,6 @@
+// SPDX-License-Identifier: Apache-2.0
+// Copyright 2020 Swap.Pet@pm.me
+// scripts/signatures.ts
 import { keccak256, defaultAbiCoder, toUtf8Bytes, solidityPack } from 'ethers/lib/utils'
 import { BigNumberish } from 'ethers'
 import { ecsign } from 'ethereumjs-util'
