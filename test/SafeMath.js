@@ -179,5 +179,15 @@ describe("SafeCast test", function () {
         await expectRevert(safeCastMock.toUint256(overUint255),
           'SafeCast: value must be positive',
         );
+    }); 
+    it('toUint128(2**128-1)', async function () {
+        let maxUint128 = (new BN(2)).pow(new BN(128)).sub(new BN(1));
+        assert.equal(maxUint128.toString(), await safeCastMock.toUint128(maxUint128));
+    });
+    it('toUint128(2**128) overflow', async function () { 
+        let overUint128 = (new BN(2)).pow(new BN(128));
+        await expectRevert(safeCastMock.toUint128(overUint128),
+          'SafeCast: value overflow 128 bits',
+        );
     });   
 });
