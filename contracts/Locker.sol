@@ -2,15 +2,14 @@
 // Copyright 2020 Swap.Pet@pm.me
 // contracts/Locker.sol
 pragma solidity ^0.7.0; 
-
-/**
- * @dev helper for prevent re-enter calls.
- *      Inheriting from `Locker` to use {lock} modifier 
- *      this is a single `lock` guard which can not call one another. 
- *      Using on `external`functions which points to `private` functions. 
- */
-contract Locker { 
-    uint8 private _lock;
+ 
+/// @notice helper for prevent re-enter calls.
+/// @dev    Inheriting from `Locker` to use {lock} modifier 
+///         this is a single `lock` guard which can not call one another. 
+///         Using on `external`functions which points to `private` functions. 
+abstract contract Locker { 
+    /// @dev refer it and direct use uint8
+    uint256 private _lock;
     constructor () internal {
         _lock = 0;
     } 
