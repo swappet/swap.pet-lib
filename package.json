@@ -1,6 +1,6 @@
 {
   "name": "swap.pet-lib",
-  "version": "4.0.1",
+  "version": "4.0.2",
   "description": "Solidity libraries that are shared across swap.pet contracts",
   "main": "index.js",
   "directories": {
@@ -18,7 +18,7 @@
     "network": "node scripts/network.js",
     "mocha": "mocha --exit --recursive",
     "build": "npx npm run compile",
-    "clean": "npx hardhat clean" 
+    "clean": "npx hardhat clean"
   },
   "repository": {
     "type": "git",
