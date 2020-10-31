@@ -36,8 +36,8 @@ main = async () => {
         }
     ])
         .then(answers => { 
-            let argv=["truffle","run","coverage"]; 
-            let note="truffle run coverage ";
+            let argv=["hardhat","test"];
+            let note="hardhat test ";  
             if(answers.step1 !== 'all'){
                 console.log(note + testDir + answers.step1);
                 argv.push(testDir + answers.step1); 
