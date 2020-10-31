@@ -35,9 +35,9 @@ main = async () => {
             choices: files,
         }
     ])
-        .then(answers => {
-            let argv=["mocha","--exit","--recursive","--bail"];
-            let note="mocha --exit --recursive --bail ";
+        .then(answers => { 
+            let argv=["truffle","run","coverage"]; 
+            let note="truffle run coverage ";
             if(answers.step1 !== 'all'){
                 console.log(note + testDir + answers.step1);
                 argv.push(testDir + answers.step1); 
