@@ -3,6 +3,15 @@
   "version": "4.0.5",
   "description": "Solidity libraries that are shared across swap.pet contracts",
   "main": "index.js",
+  "files": [
+    "abi",
+    "contracts",
+    "dapps",
+    "defi",
+    "interfaces",
+    "tokens",
+    "!contracts/mocks"
+  ],
   "directories": {
     "test": "test"
   },
