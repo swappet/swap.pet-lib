@@ -1,5 +1,5 @@
-import ERC20Abi from "./abi/ERC20.json";
-import WETHAbi from "./abi/WETH.json";
+import ERC20Abi from "../abi/ERC20.json";
+import WETHAbi from "../abi/WETH.json";
 
 const tokens = {
   eth: {
