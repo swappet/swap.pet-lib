@@ -12,13 +12,13 @@ const tokens = require("swap.pet-sdk/tokens")
 // console.log("tokens:", tokens)     
 
 const provider = new ethers.providers.JsonRpcProvider("http://localhost:8545") 
-// const deployer = new ethers.Wallet(process.env.PRIV_KEY_DEPLOY, provider)
-// const tester = new ethers.Wallet(process.env.PRIV_KEY_TEST5, provider) 
+const deployer = new ethers.Wallet(process.env.PRIV_KEY_DEPLOY, provider)
+const tester = new ethers.Wallet(process.env.PRIV_KEY_TEST5, provider) 
 
 describe("test:buy Uniswap BAT with ETH", () => { 
   before(async function() {
     // get account
-    const [deployer, tester] = await ethers.getSigners();
+    // const [deployer, tester] = await ethers.getSigners();
     // init Contract
     const wethContract = new ethers.Contract(
       sdk.tokens.weth.address,
