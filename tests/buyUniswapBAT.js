@@ -22,12 +22,11 @@ describe("test:buy Uniswap BAT with ETH", () => {
       sdk.tokens.weth.abi,
       deployer
     )
-    const depositWETH = await wethContract.deposit({
+    await wethContract.deposit({
       value: ethers.utils.parseEther("1.0"),
       gasLimit: 1000000,
       from:deployer.address
     })
-    console.log('deployer WETH:',depositWETH)
 
     const wethBal = await wethContract.balanceOf(deployer.address)
     console.log(`deployer WETH Balance: ${ethers.utils.formatEther(wethBal)}`)
