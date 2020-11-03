@@ -31,6 +31,7 @@ describe("test:buy Uniswap BAT with ETH", () => {
 
     const wethBal = await wethContract.balanceOf(deployer.address)
     console.log(`deployer WETH Balance: ${ethers.utils.formatEther(wethBal)}`)
+    expect(wethBal).to.above(0)   
   })
 
   it("initial BAT balance of 0", async () => {
