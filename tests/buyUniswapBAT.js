@@ -14,14 +14,29 @@ const tokens = require("swap.pet-sdk/tokens")
 const provider = new ethers.providers.JsonRpcProvider("http://localhost:8545") 
 const deployer = new ethers.Wallet(process.env.PRIV_KEY_DEPLOY, provider)
 const tester = new ethers.Wallet(process.env.PRIV_KEY_TEST5, provider) 
-
+// init Contract
+const wethContract = new ethers.Contract(
+  sdk.tokens.weth.address,
+  sdk.tokens.weth.abi,
+  deployer
+)
+const batContract = new ethers.Contract(
+  tokens.bat.address,
+  tokens.bat.abi,
+  deployer
+)  
+const uniswapFactoryContract = new ethers.Contract(
+  uniswap.factory.address,
+  uniswap.factory.abi,
+  deployer
+) 
+const batExchangeContract = new ethers.Contract(
+  batExchangeAddress,
+  uniswap.exchange.abi,
+  deployer,
+)
 describe("test:buy Uniswap BAT with ETH", () => { 
   it("deposit ETH to WETH ", async () => {
-    const wethContract = new ethers.Contract(
-      sdk.tokens.weth.address,
-      sdk.tokens.weth.abi,
-      deployer
-    )
     await wethContract.deposit({
       value: ethers.utils.parseEther("1.0"),
       gasLimit: 1000000,
@@ -34,11 +49,6 @@ describe("test:buy Uniswap BAT with ETH", () => {
   })
 
   it("initial BAT balance of 0", async () => {
-    const batContract = new ethers.Contract(
-      tokens.bat.address,
-      tokens.bat.abi,
-      deployer
-    ) 
     const batBalanceWei = await batContract.balanceOf(tester.address)
     const batBalance = fromWei(batBalanceWei, tokens.bat.decimals) 
     console.log(`batBalance: ${fromWei(batBalanceWei, tokens.bat.decimals)}`)
@@ -53,23 +63,8 @@ describe("test:buy Uniswap BAT with ETH", () => {
   })
 
   it("buy BAT from Uniswap", async () => { 
-    const batContract = new ethers.Contract(
-      tokens.bat.address,
-      tokens.bat.abi,
-      deployer
-    )
-    const uniswapFactoryContract = new ethers.Contract(
-      uniswap.factory.address,
-      uniswap.factory.abi,
-      deployer
-    ) 
     const batExchangeAddress = await uniswapFactoryContract.getExchange(
       tokens.bat.address,
-    )
-    const batExchangeContract = new ethers.Contract(
-      batExchangeAddress,
-      uniswap.exchange.abi,
-      deployer,
     )
  
     await batExchangeContract.ethToTokenSwapInput(
