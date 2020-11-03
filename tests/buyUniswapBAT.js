@@ -30,6 +30,9 @@ const uniswapFactoryContract = new ethers.Contract(
   uniswap.factory.abi,
   deployer
 ) 
+const batExchangeAddress = await uniswapFactoryContract.getExchange(
+  tokens.bat.address,
+)
 const batExchangeContract = new ethers.Contract(
   batExchangeAddress,
   uniswap.exchange.abi,
@@ -63,9 +66,6 @@ describe("test:buy Uniswap BAT with ETH", () => {
   })
 
   it("buy BAT from Uniswap", async () => { 
-    const batExchangeAddress = await uniswapFactoryContract.getExchange(
-      tokens.bat.address,
-    )
  
     await batExchangeContract.ethToTokenSwapInput(
       1, // min amount of token retrieved
