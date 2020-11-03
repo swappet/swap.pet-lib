@@ -31,7 +31,7 @@ describe("test:buy Uniswap BAT with ETH", () => {
 
     const wethBal = await wethContract.balanceOf(deployer.address)
     console.log(`deployer WETH Balance: ${ethers.utils.formatEther(wethBal)}`)
-    expect(wethBal).to.above(0)   
+    expect(wethBal.toString()).to.above('0')   
   })
 
   it("initial BAT balance of 0", async () => {
@@ -43,14 +43,14 @@ describe("test:buy Uniswap BAT with ETH", () => {
     const batBalanceWei = await batContract.balanceOf(tester.address)
     const batBalance = fromWei(batBalanceWei, tokens.bat.decimals) 
     console.log(`batBalance: ${fromWei(batBalanceWei, tokens.bat.decimals)}`)
-    expect(batBalance).to.equal(0) 
+    expect(batBalance.toString()).to.equal('0') 
   })
 
   it("initial ETH balance of 100000 ETH", async () => {
     const ethBalanceWei = await tester.getBalance()
     const ethBalance = ethers.utils.formatEther(ethBalanceWei) 
     console.log(`ethBalance: ${ethers.utils.formatEther(ethBalanceWei)}`)
-    expect(ethBalance).to.equal(100000)  
+    expect(ethBalance.toString()).to.equal('100000')  
   })
 
   it("buy BAT from Uniswap", async () => { 
@@ -85,6 +85,6 @@ describe("test:buy Uniswap BAT with ETH", () => {
     const batBalanceWei = await batContract.balanceOf(tester.address)
     const newBatBalance = parseFloat(fromWei(newBatBalanceWei, tokens.bat.decimals))
     console.log(`newBatBalance: ${fromWei(newBatBalanceWei, tokens.bat.decimals)}`)
-    expect(newBatBalanceWei).to.above(0)   
+    expect(newBatBalance).to.above(0)   
   })
 }) 
