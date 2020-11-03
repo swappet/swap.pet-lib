@@ -16,8 +16,8 @@ const deployer = new ethers.Wallet(process.env.PRIV_KEY_DEPLOY, provider)
 const tester = new ethers.Wallet(process.env.PRIV_KEY_TEST5, provider) 
 
 const wethContract = new ethers.Contract(
-  legos.tokens.weth.address,
-  legos.tokens.weth.abi,
+  sdk.tokens.weth.address,
+  sdk.tokens.weth.abi,
   deployer
 )
 describe("test:buy Uniswap BAT with ETH", () => { 
