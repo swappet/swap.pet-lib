@@ -1,5 +1,5 @@
 import weth from "./IWETH9.sol";
-
+const { forkedChain, runTests } = require("./helpers/test");
 import { default as inch1 } from "./inch1"; // 1inch
 import { default as aave } from "./aave";
 import { default as ampl } from "./ampl";

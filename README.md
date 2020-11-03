@@ -22,6 +22,14 @@ or:`$ npx npm i swap.pet-lib`
 Then import the contracts via:  
 `import 'swap.pet-lib/contracts/lib/ERC20.sol';`
 
+# dir
+abi:ABI of defi.  
+defi:online contract of defi with ABI/address.  
+dapps:logo of Defi App.  
+contracts:sol file.  
+tokens:online token info of Defi with ABI/address/symbol/decimals/logo.
+interfaces: contract interfaces of Defi.  
+
 # create
 ## install LTS Node with nvm
 ```
@@ -53,7 +61,15 @@ in app dir:`$ npx npm i swap.pet-lib`
 in sol file:  
 ```
 import "swap.pet-lib/contracts/SafeMath.sol";
-import "swap.pet-lib/interfaces/ISwapPetOracle.sol";
+import "swap.pet-lib/interfaces/swappet/ISwapPetOracle.sol";
+```
+
+in js file:
+```
+const { abi } = require("swap.pet-lib/abi") 
+const { defi } = require("swap.pet-lib/defi") 
+const { interfaces } = require("swap.pet-lib/interfaces")
+const { tokens } = require("swap.pet-lib/tokens") 
 ```
 
 # sol debug
