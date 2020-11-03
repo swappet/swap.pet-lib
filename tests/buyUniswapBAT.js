@@ -9,8 +9,7 @@ require("dotenv").config()
 const { sdk } = require("swap.pet-sdk")  
 const uniswap = require("swap.pet-sdk/uniswap")
 const tokens = require("swap.pet-sdk/tokens")  
-console.log("tokens:", tokens)     
-
+// console.log("tokens:", tokens)     
 
 const provider = new ethers.providers.JsonRpcProvider("http://localhost:8545") 
 const deployer = new ethers.Wallet(process.env.PRIV_KEY_DEPLOY, provider)
