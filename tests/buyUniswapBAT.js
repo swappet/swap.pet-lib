@@ -12,8 +12,9 @@ const tokens = require("swap.pet-sdk/tokens")
 // console.log("tokens:", tokens)     
 
 const provider = new ethers.providers.JsonRpcProvider("http://localhost:8545") 
-const deployer = new ethers.Wallet(process.env.PRIV_KEY_DEPLOY, provider)
-const tester = new ethers.Wallet(process.env.PRIV_KEY_TEST5, provider) 
+// const deployer = new ethers.Wallet(process.env.PRIV_KEY_DEPLOY, provider)
+// const tester = new ethers.Wallet(process.env.PRIV_KEY_TEST5, provider) 
+const [deployer, tester] = await ethers.getSigners();
 // init Contract
 const wethContract = new ethers.Contract(
   sdk.tokens.weth.address,
@@ -32,10 +33,9 @@ const uniswapFactoryContract = new ethers.Contract(
 ) 
 describe("test:buy Uniswap BAT with ETH", () => { 
   it("deposit ETH to WETH ", async () => {
-    await wethContract.deposit({
+    await wethContract.connect(deployer).deposit({
       value: ethers.utils.parseEther("1.0"),
-      gasLimit: 1000000,
-      from:deployer
+      gasLimit: 1000000, 
     })
 
     const wethBal = await wethContract.balanceOf(deployer.address)
@@ -66,13 +66,12 @@ describe("test:buy Uniswap BAT with ETH", () => {
       uniswap.exchange.abi,
       deployer,
     )
-    await batExchangeContract.ethToTokenSwapInput(
+    await batExchangeContract.connect(tester).ethToTokenSwapInput(
       1, // min amount of token retrieved
       2525800000, // random timestamp in the future 
       {
         gasLimit: 4000000,
-        value: ethers.utils.parseEther("10"),
-        from:tester
+        value: ethers.utils.parseEther("10"), 
       },
     ) 
  
