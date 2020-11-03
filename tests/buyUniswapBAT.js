@@ -30,14 +30,6 @@ const uniswapFactoryContract = new ethers.Contract(
   uniswap.factory.abi,
   deployer
 ) 
-const batExchangeAddress = await uniswapFactoryContract.getExchange(
-  tokens.bat.address,
-)
-const batExchangeContract = new ethers.Contract(
-  batExchangeAddress,
-  uniswap.exchange.abi,
-  deployer,
-)
 describe("test:buy Uniswap BAT with ETH", () => { 
   it("deposit ETH to WETH ", async () => {
     await wethContract.deposit({
@@ -66,7 +58,14 @@ describe("test:buy Uniswap BAT with ETH", () => {
   })
 
   it("buy BAT from Uniswap", async () => { 
- 
+    const batExchangeAddress = await uniswapFactoryContract.getExchange(
+      tokens.bat.address,
+    )
+    const batExchangeContract = new ethers.Contract(
+      batExchangeAddress,
+      uniswap.exchange.abi,
+      deployer,
+    )
     await batExchangeContract.ethToTokenSwapInput(
       1, // min amount of token retrieved
       2525800000, // random timestamp in the future 
