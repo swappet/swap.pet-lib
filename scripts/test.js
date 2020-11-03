@@ -4,28 +4,11 @@
 const fs = require('fs');
 var inquirer = require('inquirer');
 const { spawn } = require('child_process');
+const { getTestFiles } = require("./utils");
 
-const testDir = 'test/';
-getFiles = async (path) => {
-    const tests = await fs.readdirSync(path, 'utf-8');
-    let files = [{name:'tesl all',value:'all'}];
-    tests.forEach(async (subDir1, index) => {
-        let stat = fs.statSync(path + subDir1);
-        if(subDir1 !== 'lib'){
-            if (stat.isDirectory()) {
-                let subTests = await fs.readdirSync(path + subDir1 + '/', 'utf-8');
-                subTests.forEach((subDir2, index) => {
-                    files.push(subDir1 + '/' + subDir2);
-                })
-            } else {
-                files.push(subDir1);
-            }
-        }
-    })
-    return files;
-}
-main = async () => {
-    const files = await getFiles(testDir);
+const testDir = 'tests/'; 
+const test = async () => {
+    const files = await getTestFiles(testDir);
 
     inquirer.prompt([
         {
@@ -51,5 +34,4 @@ main = async () => {
 
         });
 }
-
-main();
+test();
