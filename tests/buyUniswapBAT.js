@@ -2,7 +2,7 @@
 // Copyright 2020 Swap.Pet@pm.me
 // test/buyUniswapBAT.test.js 
 const { ethers } = require("ethers") 
-const { expect } = require('chai'); 
+const { expect } = require('chai');  
 const { fromWei } = require("../scripts/utils")
 require("dotenv").config() 
 
@@ -42,14 +42,14 @@ describe("test:buy Uniswap BAT with ETH", () => {
     const batBalanceWei = await batContract.balanceOf(tester.address)
     const batBalance = fromWei(batBalanceWei, tokens.bat.decimals) 
     console.log(`batBalance: ${fromWei(batBalanceWei, tokens.bat.decimals)}`)
-    expect(parseFloat(batBalance)).toBe(0)
+    expect(batBalance).to.equal(0) 
   })
 
   it("initial ETH balance of 100000 ETH", async () => {
     const ethBalanceWei = await tester.getBalance()
     const ethBalance = ethers.utils.formatEther(ethBalanceWei) 
     console.log(`ethBalance: ${ethers.utils.formatEther(ethBalanceWei)}`)
-    expect(parseFloat(ethBalance)).toBe(100000)
+    expect(ethBalance).to.equal(100000)  
   })
 
   it("buy BAT from Uniswap", async () => { 
@@ -81,9 +81,9 @@ describe("test:buy Uniswap BAT with ETH", () => {
       },
     ) 
  
-    const batBalanceWei = await batContract.balanceOf(wallet.address)
+    const batBalanceWei = await batContract.balanceOf(tester.address)
     const newBatBalance = parseFloat(fromWei(newBatBalanceWei, tokens.bat.decimals))
     console.log(`newBatBalance: ${fromWei(newBatBalanceWei, tokens.bat.decimals)}`)
-    expect(newBatBalanceWei).toBeGreaterThan(0) 
+    expect(newBatBalanceWei).to.above(0)   
   })
 }) 
