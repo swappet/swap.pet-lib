@@ -21,7 +21,7 @@ describe("test:buy Uniswap BAT with ETH", () => {
     const wethContract = new ethers.Contract(
       sdk.tokens.weth.address,
       sdk.tokens.weth.abi,
-      deployer.address
+      deployer
     )
     const depositWETH = await wethContract.deposit({
       value: ethers.utils.parseEther("1.0"),
@@ -39,7 +39,7 @@ describe("test:buy Uniswap BAT with ETH", () => {
     const batContract = new ethers.Contract(
       tokens.bat.address,
       tokens.bat.abi,
-      deployer.address,
+      deployer,
     ) 
     const batBalanceWei = await batContract.balanceOf(tester.address)
     const batBalance = fromWei(batBalanceWei, tokens.bat.decimals) 
@@ -58,12 +58,12 @@ describe("test:buy Uniswap BAT with ETH", () => {
     const batContract = new ethers.Contract(
       tokens.bat.address,
       tokens.bat.abi,
-      deployer.address,
+      deployer,
     )
     const uniswapFactoryContract = new ethers.Contract(
       uniswap.factory.address,
       uniswap.factory.abi,
-      deployer.address,
+      deployer,
     ) 
     const batExchangeAddress = await uniswapFactoryContract.getExchange(
       tokens.bat.address,
@@ -71,7 +71,7 @@ describe("test:buy Uniswap BAT with ETH", () => {
     const batExchangeContract = new ethers.Contract(
       batExchangeAddress,
       uniswap.exchange.abi,
-      deployer.address,
+      deployer,
     )
  
     await batExchangeContract.ethToTokenSwapInput(
