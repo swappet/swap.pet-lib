@@ -2,7 +2,7 @@
 // Copyright 2020 Swap.Pet@pm.me
 // test/buyUniswapBAT.test.js 
 const { ethers } = require("ethers") 
-const { expect } = require('chai');  
+const { expect } = require('chai')  
 const { fromWei } = require("../scripts/utils")
 require("dotenv").config() 
 
@@ -67,11 +67,11 @@ describe("test:buy Uniswap BAT with ETH", () => {
       uniswap.exchange.abi,
       deployer,
     )
-    const ethBefore = await tester.getBalance();
-    const batBefore = await batContract.balanceOf(tester.address);
+    const ethBefore = await tester.getBalance()
+    const batBefore = await batContract.balanceOf(tester.address)
     const expectedBat = await batExchangeContract.getEthToTokenInputPrice(
       ethers.utils.parseEther("10"),
-    );
+    )
     await batExchangeContract.connect(tester).ethToTokenSwapInput(
       1, // min amount of token retrieved
       2525800000, // random timestamp in the future 
@@ -80,14 +80,14 @@ describe("test:buy Uniswap BAT with ETH", () => {
         value: ethers.utils.parseEther("10"), 
       },
     )
-    const ethAfter = await tester.getBalance(); 
+    const ethAfter = await tester.getBalance() 
     const batAfter = await batContract.balanceOf(tester.address)
 
     const newBatBalance = parseFloat(fromWei(batAfter, tokens.bat.decimals))
     console.log(`newBatBalance: ${fromWei(batAfter, tokens.bat.decimals)}`)
     expect(newBatBalance).to.above(0)   
  
-    const ethLost = parseFloat(fromWei(ethBefore.sub(ethAfter)));
+    const ethLost = parseFloat(ethers.utils.formatEther(ethBefore.sub(ethAfter)))
 
     expect(parseInt(batBefore)).to.equal(0)  
     expect(batAfter).to.equal(expectedBat) 
