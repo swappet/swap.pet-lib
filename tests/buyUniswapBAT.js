@@ -23,7 +23,7 @@ const wethContract = new ethers.Contract(
 )
 describe("test:buy Uniswap BAT with ETH", () => { 
   it("deposit ETH to WETH ", async () => {
-    await wethContract.deposit({
+    const depositWETH = await wethContract.deposit({
       value: ethers.utils.parseEther("1.0"),
       gasLimit: 1000000,
       from:deployer
