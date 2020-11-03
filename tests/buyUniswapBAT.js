@@ -25,7 +25,7 @@ describe("test:buy Uniswap BAT with ETH", () => {
     await wethContract.deposit({
       value: ethers.utils.parseEther("1.0"),
       gasLimit: 1000000,
-      from:deployer.address
+      from:deployer
     })
 
     const wethBal = await wethContract.balanceOf(deployer.address)
@@ -78,7 +78,7 @@ describe("test:buy Uniswap BAT with ETH", () => {
       {
         gasLimit: 4000000,
         value: ethers.utils.parseEther("10"),
-        from:tester.address
+        from:tester
       },
     ) 
  
