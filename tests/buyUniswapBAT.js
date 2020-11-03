@@ -14,24 +14,28 @@ const tokens = require("swap.pet-sdk/tokens")
 const provider = new ethers.providers.JsonRpcProvider("http://localhost:8545") 
 // const deployer = new ethers.Wallet(process.env.PRIV_KEY_DEPLOY, provider)
 // const tester = new ethers.Wallet(process.env.PRIV_KEY_TEST5, provider) 
-const [deployer, tester] = await ethers.getSigners();
-// init Contract
-const wethContract = new ethers.Contract(
-  sdk.tokens.weth.address,
-  sdk.tokens.weth.abi,
-  deployer
-)
-const batContract = new ethers.Contract(
-  tokens.bat.address,
-  tokens.bat.abi,
-  deployer
-)  
-const uniswapFactoryContract = new ethers.Contract(
-  uniswap.factory.address,
-  uniswap.factory.abi,
-  deployer
-) 
+
 describe("test:buy Uniswap BAT with ETH", () => { 
+  before(async function() {
+    // get account
+    const [deployer, tester] = await ethers.getSigners();
+    // init Contract
+    const wethContract = new ethers.Contract(
+      sdk.tokens.weth.address,
+      sdk.tokens.weth.abi,
+      deployer
+    )
+    const batContract = new ethers.Contract(
+      tokens.bat.address,
+      tokens.bat.abi,
+      deployer
+    )  
+    const uniswapFactoryContract = new ethers.Contract(
+      uniswap.factory.address,
+      uniswap.factory.abi,
+      deployer
+    ) 
+  });
   it("deposit ETH to WETH ", async () => {
     await wethContract.connect(deployer).deposit({
       value: ethers.utils.parseEther("1.0"),
