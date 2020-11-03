@@ -2,6 +2,7 @@
 // Copyright 2020 Swap.Pet@pm.me
 // test/buyUniswapBAT.test.js 
 const { ethers } = require("ethers") 
+const { expect } = require('chai'); 
 const { fromWei } = require("../scripts/utils")
 require("dotenv").config() 
 
@@ -16,12 +17,12 @@ const deployer = new ethers.Wallet(process.env.PRIV_KEY_DEPLOY, provider)
 const tester = new ethers.Wallet(process.env.PRIV_KEY_TEST5, provider) 
 
 const wethContract = new ethers.Contract(
-  legos.tokens.weth.address,
-  legos.tokens.weth.abi,
+  sdk.tokens.weth.address,
+  sdk.tokens.weth.abi,
   deployer
 )
 describe("test:buy Uniswap BAT with ETH", () => { 
-  test("deposit ETH to WETH ", async () => {
+  it("deposit ETH to WETH ", async () => {
     await wethContract.deposit({
       value: ethers.utils.parseEther("1.0"),
       gasLimit: 1000000,
@@ -32,7 +33,7 @@ describe("test:buy Uniswap BAT with ETH", () => {
     console.log(`deployer WETH Balance: ${ethers.utils.formatEther(wethBal)}`)
   })
 
-  test("initial BAT balance of 0", async () => {
+  it("initial BAT balance of 0", async () => {
     const batContract = new ethers.Contract(
       tokens.bat.address,
       tokens.bat.abi,
@@ -44,14 +45,14 @@ describe("test:buy Uniswap BAT with ETH", () => {
     expect(parseFloat(batBalance)).toBe(0)
   })
 
-  test("initial ETH balance of 100000 ETH", async () => {
+  it("initial ETH balance of 100000 ETH", async () => {
     const ethBalanceWei = await tester.getBalance()
     const ethBalance = ethers.utils.formatEther(ethBalanceWei) 
     console.log(`ethBalance: ${ethers.utils.formatEther(ethBalanceWei)}`)
     expect(parseFloat(ethBalance)).toBe(100000)
   })
 
-  test("buy BAT from Uniswap", async () => { 
+  it("buy BAT from Uniswap", async () => { 
     const batContract = new ethers.Contract(
       tokens.bat.address,
       tokens.bat.abi,
