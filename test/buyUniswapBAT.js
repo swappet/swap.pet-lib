@@ -90,7 +90,7 @@ describe("test:buy Uniswap BAT with ETH", () => {
     const ethLost = parseFloat(ethers.utils.formatEther(ethBefore.sub(ethAfter)))
 
     expect(parseInt(batBefore)).to.equal(0)  
-    expect(batAfter).to.equal(expectedBat) 
+    expect(parseFloat(batAfter)).to.equal(parseFloat(expectedBat)) 
     expect(ethLost).to.be.closeTo(10, 0.1)
   })
 }) 
