@@ -1,6 +1,6 @@
 // SPDX-License-Identifier: Apache-2.0
 // Copyright 2020 Swap.Pet@pm.me
-// test/utils.js 
+// scripts/utils.js 
 const { ethers } = require('ethers'); 
 const fs = require('fs'); 
 const path = require('path');  
