@@ -1,8 +1,7 @@
 // SPDX-License-Identifier: Apache-2.0
 // Copyright 2020 Swap.Pet@pm.me
 // test/buyUniswapBAT.test.js 
-const { ethers } = require("ethers") 
-const ganache = require("ganache-core");  
+const { ethers } = require("ethers")   
 const { expect } = require('chai')  
 const { fromWei } = require("../scripts/utils")
 require("dotenv").config() 
@@ -13,9 +12,7 @@ const tokens = require("swap.pet-sdk/tokens")
 // console.log("tokens:", tokens) 
 
 // `$ npx ganache-cli -f https://mainnet.infura.io/v3/{key} -i 1 -e 100000 -d`
-// const provider = new ethers.providers.JsonRpcProvider("http://localhost:8545")
-const server = ganache.server();
-const provider = server.provider; 
+const provider = new ethers.providers.JsonRpcProvider("http://localhost:8545") 
 // get account 
 const deployer = new ethers.Wallet(process.env.PRIV_KEY_DEPLOY, provider)
 const tester = new ethers.Wallet(process.env.PRIV_KEY_TEST5, provider) 
