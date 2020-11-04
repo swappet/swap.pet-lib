@@ -1,8 +1,8 @@
 // SPDX-License-Identifier: Apache-2.0
 // Copyright 2020 Swap.Pet@pm.me
 // test/buyUniswapBAT.test.js 
-// const { ethers } = require("ethers") 
-const { ethers } = require("@nomiclabs/buidler");
+const { ethers } = require("ethers") 
+
 const { expect } = require('chai')  
 const { fromWei } = require("../scripts/utils")
 require("dotenv").config() 
@@ -18,26 +18,23 @@ const provider = new ethers.providers.JsonRpcProvider("http://localhost:8545")
 const deployer = new ethers.Wallet(process.env.PRIV_KEY_DEPLOY, provider)
 const tester = new ethers.Wallet(process.env.PRIV_KEY_TEST5, provider) 
 
-describe("test:buy Uniswap BAT with ETH", () => {   
-  beforeAll(async () => {
-    [deployer,tester] = await ethers.getSigners();
     // init Contract
-    const wethContract = new ethers.Contract(
-      sdk.tokens.weth.address,
-      sdk.tokens.weth.abi,
-      deployer
-    )
-    const batContract = new ethers.Contract(
-      tokens.bat.address,
-      tokens.bat.abi,
-      deployer
-    )  
-    const uniswapFactoryContract = new ethers.Contract(
-      uniswap.factory.address,
-      uniswap.factory.abi,
-      deployer
-    ) 
-  });
+const wethContract = new ethers.Contract(
+  sdk.tokens.weth.address,
+  sdk.tokens.weth.abi,
+  deployer
+)
+const batContract = new ethers.Contract(
+  tokens.bat.address,
+  tokens.bat.abi,
+  deployer
+)  
+const uniswapFactoryContract = new ethers.Contract(
+  uniswap.factory.address,
+  uniswap.factory.abi,
+  deployer
+) 
+describe("test:buy Uniswap BAT with ETH", () => {   
   it("deposit ETH to WETH ", async () => {
     await wethContract.connect(deployer).deposit({
       value: ethers.utils.parseEther("1.0"),
