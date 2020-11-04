@@ -132,10 +132,11 @@ const runTest = async () => {
   await serverClose();
 };
 module.exports = {
-  fromWei,
-  mineBlock,
-  increaseTime,
   forkChain,
   forkChainCMD,
+  fromWei,
+  getTestFiles,
+  increaseTime,
+  mineBlock,
   runTest,
 };
