@@ -1,11 +1,11 @@
 {
   "name": "swap.pet-lib",
-  "version": "4.0.6",
+  "version": "4.1.0",
   "description": "Solidity libraries that are shared across swap.pet contracts",
   "main": "index.js",
-  "files": [ 
-    "contracts",  
-    "interfaces", 
+  "files": [
+    "contracts",
+    "interfaces",
     "!contracts/mocks"
   ],
   "directories": {
@@ -24,8 +24,8 @@
     "mocha": "mocha --exit --recursive",
     "build": "npx npm run compile",
     "clean": "npx hardhat clean",
-    "mfork":"npx node scripts/forkMainnet.js",
-    "tfork":"npx node scripts/testOnForkMainnet.js"
+    "mfork": "npx node scripts/forkMainnet.js",
+    "tfork": "npx node scripts/testOnForkMainnet.js"
   },
   "repository": {
     "type": "git",
