@@ -13,7 +13,8 @@ const tokens = require("swap.pet-sdk/tokens")
 // console.log("tokens:", tokens) 
 
 // `$ npx ganache-cli -f https://mainnet.infura.io/v3/{key} -i 1 -e 100000 -d`
-const provider = new ethers.providers.JsonRpcProvider("http://localhost:8545")
+// const provider = new ethers.providers.JsonRpcProvider("http://localhost:8545")
+const provider = new ethers.provider()
 // get account 
 const deployer = new ethers.Wallet(process.env.PRIV_KEY_DEPLOY, provider)
 const tester = new ethers.Wallet(process.env.PRIV_KEY_TEST5, provider) 
