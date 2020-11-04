@@ -91,5 +91,13 @@ const forkChainCMD = async () => {
   });
 };
 
-forkChain();
+const runTest = async () => {
+  await new Promise((resolve) => {
+    const p = spawn('npx', ['node','scripts/test.js'], { stdio: "inherit" });
+    p.on("exit", () => resolve());
+  });
+};
+const { serverListen, serverClose } = forkChain();
+runTest();
+serverClose();
 // forkChainCMD(); 
