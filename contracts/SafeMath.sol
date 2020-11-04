@@ -31,11 +31,20 @@ library SafeMath {
     function mul(uint a_, uint b_) internal pure returns (uint c_) {
         require(a_ == 0 || b_ == 0 || (c_ = a_ * b_) / b_ == a_, 'SafeMath: mul overflow');
     }
+    function mulScale(uint a_, uint b_, uint256 _scale) internal pure returns (uint c_) {
+        require(_scale > 0, 'SafeMath: mul overflow');
+        return a_.mul(b_).div(_scale);
+    }
+    
     function div(uint a_, uint b_) internal pure returns (uint) {
         return div(a_, b_, "SafeMath: div by zero");
     } 
     function div(uint a_, uint b_, string memory errMsg_) internal pure returns (uint c_) {
         require( a_ == 0 || (b_ > 0 && ( c_ = a_ / b_ ) >= 0), errMsg_);
+    }
+    function divScale(uint a_, uint b_, uint256 _scale) internal pure returns (uint c_) {
+        require(_scale > 0, 'SafeMath: div overflow');
+        return a_.mul(_scale).div(b_);
     }
     function mod(uint a_, uint b_) internal pure returns (uint) {
         return mod(a_, b_, "SafeMath: mod by zero");
