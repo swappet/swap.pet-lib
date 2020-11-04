@@ -29,6 +29,7 @@ task("balance", "Prints an account's balance")
 
     console.log(web3.utils.fromWei(balance, "ether"), "ETH");
   });
+<<<<<<< HEAD
   
 const { forkChain,runTest } = require("./scripts/forkMainnet");
 task("fork", "Runs tests in parallel on Ganache fork Mainnet", async () => {
@@ -37,6 +38,16 @@ task("fork", "Runs tests in parallel on Ganache fork Mainnet", async () => {
   await runTest();
   //await serverClose();
 }); 
+=======
+
+// const { forkChain,runTest } = require("./scripts/forkMainnet");
+// task("fork", "Runs tests in parallel on Ganache fork Mainnet", async () => {
+//   const { serverListen, serverClose } = forkChain();
+//   await serverListen();
+//   await runTest();
+//   await serverClose();
+// }); 
+>>>>>>> 04e0dc26d5d777a2e6526e30ad0a86cd4424b817
 // You have to export an object to set up your config
 // This object can have the following optional entries:
 // defaultNetwork, networks, solc, and paths.
@@ -70,7 +81,6 @@ module.exports = {
         timeout:20000,
         enabled:false
       }
-
     },
     localhost: { url: "http://127.0.0.1:8545" },
     coverage: { url: 'http://127.0.0.1:8555' },
