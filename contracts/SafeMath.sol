@@ -37,7 +37,7 @@ library SafeMath {
         return a_.mul(b_).div(_scale);
     }
     function mulScale(uint a_, uint b_) internal pure returns (uint) { 
-        return mulScale(a, b, __scale);
+        return mulScale(a_, b_, __scale);
     }
     
     function div(uint a_, uint b_) internal pure returns (uint) {
@@ -51,7 +51,7 @@ library SafeMath {
         return a_.mul(_scale).div(b_);
     }
     function divScale(uint a_, uint b_) internal pure returns (uint) { 
-        return divScale(a, b, __scale);
+        return divScale(a_, b_, __scale);
     }
     function mod(uint a_, uint b_) internal pure returns (uint) {
         return mod(a_, b_, "SafeMath: mod by zero");
