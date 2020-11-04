@@ -78,7 +78,7 @@ const forkChain = async () => {
       });
     });
   };
-  await serverListen();
+  // await serverListen();
 
   return { serverListen, serverClose }; 
 }; 
@@ -92,12 +92,13 @@ const forkChainCMD = async () => {
 };
 
 const runTest = async () => {
+  const { serverListen, serverClose } = await forkChain();
+  serverListen();
   await new Promise((resolve) => {
     const p = spawn('npx', ['node','scripts/test.js'], { stdio: "inherit" });
     p.on("exit", () => resolve());
   });
+  await serverClose();
 };
-const { serverListen, serverClose } = forkChain();
 runTest();
-serverClose();
 // forkChainCMD(); 
