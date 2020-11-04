@@ -34,7 +34,7 @@ library SafeMath {
     }
     function mulScale(uint a_, uint b_, uint256 _scale) internal pure returns (uint c_) {
         require(_scale > 0, 'SafeMath: mul overflow');
-        return a_.mul(b_).div(_scale);
+        return div(mul(a_, b_), _scale);
     }
     function mulScale(uint a_, uint b_) internal pure returns (uint) { 
         return mulScale(a_, b_, __scale);
@@ -48,7 +48,7 @@ library SafeMath {
     }
     function divScale(uint a_, uint b_, uint256 _scale) internal pure returns (uint c_) {
         require(_scale > 0, 'SafeMath: div overflow');
-        return a_.mul(_scale).div(b_);
+        return div(mul(a_, _scale), b_);
     }
     function divScale(uint a_, uint b_) internal pure returns (uint) { 
         return divScale(a_, b_, __scale);
