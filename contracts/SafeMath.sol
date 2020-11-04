@@ -5,6 +5,7 @@ pragma solidity ^0.7.0;
 
 /// @dev Wrappers over arithmetic operations with overflow checks for uint256. 
 library SafeMath {  
+    uint256 private constant __scale = 1e18;
     function max(uint a_, uint b_) internal pure returns (uint) {
         return a_ >= b_ ? a_ : b_;
     } 
@@ -35,6 +36,9 @@ library SafeMath {
         require(_scale > 0, 'SafeMath: mul overflow');
         return a_.mul(b_).div(_scale);
     }
+    function mulScale(uint a_, uint b_) internal pure returns (uint) { 
+        return mulScale(a, b, __scale);
+    }
     
     function div(uint a_, uint b_) internal pure returns (uint) {
         return div(a_, b_, "SafeMath: div by zero");
@@ -45,6 +49,9 @@ library SafeMath {
     function divScale(uint a_, uint b_, uint256 _scale) internal pure returns (uint c_) {
         require(_scale > 0, 'SafeMath: div overflow');
         return a_.mul(_scale).div(b_);
+    }
+    function divScale(uint a_, uint b_) internal pure returns (uint) { 
+        return divScale(a, b, __scale);
     }
     function mod(uint a_, uint b_) internal pure returns (uint) {
         return mod(a_, b_, "SafeMath: mod by zero");
