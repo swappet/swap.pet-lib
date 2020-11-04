@@ -33,9 +33,9 @@ task("balance", "Prints an account's balance")
 const { forkChain,runTest } = require("./scripts/forkMainnet");
 task("fork", "Runs tests in parallel on Ganache fork Mainnet", async () => {
   const { serverListen, serverClose } = forkChain();
-  await serverListen();
+  //await serverListen();
   await runTest();
-  await serverClose();
+  //await serverClose();
 }); 
 // You have to export an object to set up your config
 // This object can have the following optional entries:
