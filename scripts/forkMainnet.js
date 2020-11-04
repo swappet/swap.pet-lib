@@ -80,15 +80,10 @@ const forkChain = async () => {
   };
   await serverListen();
 
-  return { serverListen, serverClose };
-
-  // const provider = new ethers.providers.Web3Provider(ganache);
-  // const wallet = new ethers.Wallet(process.env.PRIV_KEY_DEPLOY, provider);
-
-  // return { wallet, provider };
+  return { serverListen, serverClose }; 
 }; 
 
-const runTest = async () => {
+const forkChainCMD = async () => {
   await new Promise((resolve) => {
     // npx ganache-cli -f https://mainnet.infura.io/v3/30b7709884d246a681aed71a33438f50 -i 1 -e 100000 -d
     const p = spawn('npx', ['ganache-cli','-f',mainetURL,'-i',1,'-e',100000,'-p',process.env.PORT,'-d'], { stdio: "inherit" });
@@ -97,9 +92,4 @@ const runTest = async () => {
 };
 
 forkChain();
-// runTest();
-
-module.exports = {
-  forkChain,
-  runTest,
-};
+// forkChainCMD(); 

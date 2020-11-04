@@ -1,6 +1,6 @@
 // SPDX-License-Identifier: Apache-2.0
 // Copyright 2020 Swap.Pet@pm.me
-// test/SafeNamer.js
+// test/SafeNamer.test.js
 const assert = require('assert');
 const { contract, accounts,web3 } = require('@openzeppelin/test-environment');
 

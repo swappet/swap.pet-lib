@@ -1,6 +1,6 @@
 // SPDX-License-Identifier: Apache-2.0
 // Copyright 2020 Swap.Pet@pm.me
-// test/SignedSafeMath.js
+// test/SignedSafeMath.test.js
 const assert = require('assert');
 const { contract  } = require('@openzeppelin/test-environment');
 

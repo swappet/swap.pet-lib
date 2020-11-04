@@ -69,10 +69,16 @@ describe("test:buy Uniswap BAT with ETH", () => {
       deployer,
     )
     const ethBefore = await tester.getBalance()
+    console.log(`ethBefore: ${fromWei(ethBefore, tokens.weth.decimals)}`)
     const batBefore = await batContract.balanceOf(tester.address)
+    console.log(`batBefore: ${fromWei(batBefore, tokens.bat.decimals)}`)
+    expect(parseInt(batBefore)).to.equal(0)  
+
     const expectedBat = await batExchangeContract.getEthToTokenInputPrice(
       ethers.utils.parseEther("10"),
     )
+    console.log(`expectedBat: ${fromWei(expectedBat, tokens.bat.decimals)}`)
+
     await batExchangeContract.connect(tester).ethToTokenSwapInput(
       1, // min amount of token retrieved
       2525800000, // random timestamp in the future 
@@ -82,16 +88,14 @@ describe("test:buy Uniswap BAT with ETH", () => {
       },
     )
     const ethAfter = await tester.getBalance() 
+    console.log(`ethAfter: ${fromWei(ethAfter, tokens.weth.decimals)}`)
     const batAfter = await batContract.balanceOf(tester.address)
-
-    const newBatBalance = parseFloat(fromWei(batAfter, tokens.bat.decimals))
-    console.log(`newBatBalance: ${fromWei(batAfter, tokens.bat.decimals)}`)
-    expect(newBatBalance).to.above(0)   
- 
-    const ethLost = parseFloat(ethers.utils.formatEther(ethBefore.sub(ethAfter)))
-
-    expect(parseInt(batBefore)).to.equal(0)  
+    console.log(`batAfter: ${fromWei(batAfter, tokens.bat.decimals)}`)
     expect(parseFloat(batAfter)).to.equal(parseFloat(expectedBat)) 
+
+    const newBatBalance = parseFloat(fromWei(batAfter, tokens.bat.decimals)) 
+    expect(newBatBalance).to.above(parseFloat(fromWei(batBefore, tokens.bat.decimals)))   
+    const ethLost = parseFloat(ethers.utils.formatEther(ethBefore.sub(ethAfter)))
     expect(ethLost).to.be.closeTo(10, 0.1)
   })
 }) 
