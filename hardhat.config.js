@@ -35,7 +35,7 @@ const {forkChain ,runTest } = require("./scripts/utils");
 task("mfork", "Fork mainnet for test") 
   .setAction(async taskArgs => {
     const { serverListen, serverClose } = await forkChain();
-    await serverListen(); 
+    serverListen(); 
   }); 
 
 task("tfork", "test on fork mainnet") 
