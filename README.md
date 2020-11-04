@@ -30,6 +30,51 @@ contracts:sol file.
 tokens:online token info of Defi with ABI/address/symbol/decimals/logo.
 interfaces: contract interfaces of Defi.  
 
+# Quickstart
+
+## Install
+
+```bash
+npm install swap.pet-lib
+```
+## Solidity Usage
+
+```js
+pragma solidity ^0.7.0;
+
+import "swap.pet-lib/interfaces/onesplit/IOneSplit.sol";
+import "swap.pet-lib/interfaces/erc/IERC20.sol"; 
+
+contract OneSplitSwapper {
+    // Uniswap Mainnet factory address
+    address constant OneSplitAddress = 0xC586BeF4a0992C495Cf22e1aeEE4E446CECDee0E;
+
+    function _swap(address from, address to, uint256 amountWei) internal {
+        IERC20 fromIERC20 = IERC20(from);
+        IERC20 toIERC20 = IERC20(to);
+
+        (uint256 returnAmount, uint256[] memory distribution) = IOneSplit(
+            OneSplitAddress
+        ).getExpectedReturn(
+            fromIERC20,
+            toIERC20,
+            amountWei,
+            10,
+            0
+        );
+
+        IOneSplit(OneSplitAddress).swap(
+            fromIERC20,
+            toIERC20,
+            amountWei,
+            returnAmount,
+            distribution,
+            0
+        );
+    }
+}
+```
+
 # create
 ## install LTS Node with nvm
 ```
