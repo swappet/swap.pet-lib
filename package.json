@@ -27,7 +27,8 @@
     "network": "node scripts/network.js",
     "mocha": "mocha --exit --recursive",
     "build": "npx npm run compile",
-    "clean": "npx hardhat clean"
+    "clean": "npx hardhat clean",
+    "fork":"npx node scripts/forkMainnet.js"
   },
   "repository": {
     "type": "git",

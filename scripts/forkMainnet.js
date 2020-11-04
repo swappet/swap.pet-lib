@@ -18,6 +18,7 @@ const forkChain = async () => {
     throw Error("infuraKey err OR PRIV_KEY_DEPLOY not found in .env");
   }  
   const server = ganache.server({ 
+    port: process.env.PORT,
     fork: mainetURL,
     network_id: 1,
     accounts: [
@@ -89,10 +90,14 @@ const forkChain = async () => {
 
 const runTest = async () => {
   await new Promise((resolve) => {
-    const p = spawn('npx', ['node','scripts/test.js'], { stdio: "inherit" });
+    // npx ganache-cli -f https://mainnet.infura.io/v3/30b7709884d246a681aed71a33438f50 -i 1 -e 100000 -d
+    const p = spawn('npx', ['ganache-cli','-f',mainetURL,'-i',1,'-e','100000','-d'], { stdio: "inherit" });
     p.on("exit", () => resolve());
   });
 };
+
+forkChain();
+
 module.exports = {
   forkChain,
   runTest,
