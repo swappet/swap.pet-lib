@@ -24,7 +24,8 @@
     "mocha": "mocha --exit --recursive",
     "build": "npx npm run compile",
     "clean": "npx hardhat clean",
-    "fork":"npx node scripts/forkMainnet.js"
+    "fork":"npx node scripts/forkMainnet.js",
+    "tfork":"npx node scripts/testOnForkMainnet.js"
   },
   "repository": {
     "type": "git",
