@@ -96,8 +96,8 @@ const runTest = async () => {
   });
 };
 
-// forkChain();
-runTest();
+forkChain();
+// runTest();
 
 module.exports = {
   forkChain,
