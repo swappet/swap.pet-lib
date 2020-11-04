@@ -93,7 +93,7 @@ const forkChainCMD = async () => {
 
 const runTest = async () => {
   const { serverListen, serverClose } = await forkChain();
-  serverListen();
+  await serverListen();
   await new Promise((resolve) => {
     const p = spawn('npx', ['node','scripts/test.js'], { stdio: "inherit" });
     p.on("exit", () => resolve());
