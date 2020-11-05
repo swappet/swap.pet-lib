@@ -15,7 +15,7 @@ abstract contract Log {
         bytes             data              //  msg.data
     ) anonymous;
 
-    modifier note {
+    modifier log {
         _;
         bytes32 arg1;
         bytes32 arg2;
